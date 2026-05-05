@@ -1,8 +1,9 @@
-"""Resumable HTTPS download fallback against hydrosource2.ornl.gov.
+"""Resumable HTTPS download against hydrosource2.ornl.gov.
 
-Used as the smoke-test path while Globus collection UUID is being confirmed,
-and as the on-demand fetch path inside MPI workers when Globus has not been
-used to pre-stage a file.
+Used by the smoke test, the bulk download driver, and the per-task workers
+in the parallel aggregator. 4xx codes that won't be cured by retry (404 etc.)
+raise PermanentHttpError immediately so callers can mark them as missing-in-
+source. Other transient errors retry with exponential backoff.
 """
 
 from __future__ import annotations

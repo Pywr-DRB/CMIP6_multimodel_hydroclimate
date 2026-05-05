@@ -5,8 +5,7 @@ prcp, tmax, tmin, wind. Other variables are NOT pre-staged — the MPI aggregato
 fetches them on demand inside each worker task.
 
 Behavior:
-  - Submits transfers via Globus if globus.enable=true AND auth is configured.
-  - Otherwise falls back to threaded HTTPS GET (concurrency-capped).
+  - Threaded HTTPS GET (concurrency from config.https.concurrency).
   - Idempotent: skips files that already exist on disk; resumes via .part files
     and the JSONL state log.
   - Aborts if staging exceeds retention.staging_raw_cap_gb (a safety net for
@@ -96,9 +95,6 @@ def main() -> int:
         for t, d in work[:10]:
             log.info("DRY-RUN: %s -> %s", manifest.http_url(cfg, t), d)
         return 0
-
-    if cfg["globus"].get("enable"):
-        log.warning("Globus path not yet wired in bulk driver; using HTTPS. Confirm UUIDs and re-enable later.")
 
     cap_gb = float(cfg["retention"]["staging_raw_cap_gb"])
     permanent_root = cfg.paths.staging_raw / "permanent"

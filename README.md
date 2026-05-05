@@ -86,7 +86,7 @@ python scripts/01_compute_weights.py --config config.yaml
 Writes `data/final/weights/drb_node_weights.{npz,parquet}` (~16 KB total). The
 MPI aggregator memory-maps these on every rank.
 
-### 3. Bulk-download keep-raw variables (Globus or HTTPS)
+### 3. Bulk-download keep-raw variables
 
 `prcp`, `tmax`, `tmin`, `wind` are retained as raw NetCDF for the
 collaborator's hydrologic model. Everything else is stream-and-discard inside
@@ -97,28 +97,11 @@ sbatch slurm/download.sbatch                              # all keep_raw vars, a
 sbatch slurm/download.sbatch --simulations DaymetV4 --max-files 5    # smaller test
 ```
 
-The Globus source UUID is `57618e0a-2c99-45ff-9694-24141b92fa17` with path
-`/gen101/world-shared/doi-data/OLCF/202402/10.13139_OLCF_2311812`, taken from
-the "Open in Globus" button on the dataset's DOI page
-([doi.ccs.ornl.gov/dataset/9d3ff396-992d-5bd7-ab02-d21ec6193147](https://doi.ccs.ornl.gov/dataset/9d3ff396-992d-5bd7-ab02-d21ec6193147)).
-This collection requires Globus Auth — no anonymous listing — so to actually
-*use* the Globus path you must:
-
-1. Register a Native App at [app.globus.org/settings/developers](https://app.globus.org/settings/developers) and copy the client ID.
-2. Put it in `globus.client_id` in `config.yaml`, set `globus.enable: true`,
-   and configure `globus.destination_endpoint_uuid` (your Globus Connect
-   Personal UUID on this HPC, or an institutional endpoint).
-3. Run `python scripts/00_globus_authorize.py` once interactively — opens a
-   browser auth flow, writes a refresh token to
-   `~/.globus_drb_refresh_token.json`.
-4. Run `python scripts/00_globus_verify.py` to confirm the collection path
-   layout matches our manifest. If the OLCF DOI archive nests data under a
-   wrapper (e.g. `SWA9505V3/`), the verifier prints the corrected
-   `source_root` to paste into `config.yaml`.
-
-Until that's done the pipeline transparently falls back to threaded HTTPS
-against `hydrosource2.ornl.gov` — proven working at ~30 MB/s in the smoke
-test, which is fine for the entire ~7.5 TB `keep_raw` budget.
+Threaded HTTPS against `hydrosource2.ornl.gov` (the public mirror of the OLCF
+DOI archive) — concurrency capped by `https.concurrency` in
+[config.yaml](config.yaml). Proven at ~30 MB/s in the smoke test; the full
+~7.5 TB `keep_raw` budget completes in roughly 70 hours of unattended SLURM
+wall time.
 
 ### 4. Parallel aggregation (one node, 8 workers)
 
@@ -192,19 +175,18 @@ src/cmip6_drb/        # importable Python package
   paths.py            # resolve staging/intermediate/final dirs
   config.py           # YAML loader
   manifest.py         # enumerate (sim, var, year) tasks + URLs
-  http_client.py      # resumable HTTPS fallback
-  globus_client.py    # Globus SDK transfer wrapper
+  http_client.py      # resumable HTTPS download with retries
   weights.py          # exactextract polygon-grid weights
   aggregate.py        # clip-to-bbox + sparse matmul
   io.py               # atomic parquet writer with float32 enforcement
   mpi_runner.py       # per-task worker function
   state.py            # JSONL idempotent task tracker
 scripts/
-  00_globus_authorize.py    # one-time interactive token grab
   01_compute_weights.py     # persist polygon-grid weights
   02_smoke_test.py          # Phase 1 end-to-end test
   03_download_bulk.py       # Phase 3 batched fetch (keep_raw vars)
-  04_aggregate_mpi.py       # Phase 4 MPI driver + reduce
+  04_aggregate_mpi.py       # Phase 4 parallel driver + reduce
+  05_make_figures.py        # reproducible figures from final/parquet
 slurm/
   smoke.sbatch
   download.sbatch

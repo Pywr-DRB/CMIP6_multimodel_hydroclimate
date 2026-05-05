@@ -103,8 +103,3 @@ def iter_tasks(
 def http_url(cfg, task: Task) -> str:
     base = cfg["https"]["base_url"].rstrip("/")
     return f"{base}/{task.relpath()}"
-
-
-def globus_source_path(cfg, task: Task) -> str:
-    root = cfg["globus"]["source_root"].rstrip("/")
-    return f"{root}/{task.relpath()}"

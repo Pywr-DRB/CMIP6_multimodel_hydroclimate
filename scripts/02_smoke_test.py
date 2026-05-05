@@ -2,15 +2,12 @@
 
 Default scope: DaymetV4 / prcp / 1980. Configurable via config.yaml.
 
-Path priority:
-  1. Globus, if `globus.enable: true` AND collection UUIDs are configured.
-  2. HTTPS direct from hydrosource2.ornl.gov (fallback / current default).
-
-After download, the script:
-  - opens the NetCDF, clips to DRB bbox,
-  - computes polygon-grid weights in-memory against the smoke shapefile,
-  - applies them, writes final/parquet/{sim}__{var}.parquet,
-  - prints summary stats (annual mean prcp at cannonsville).
+Pipeline:
+  - HTTPS-fetch the NetCDF from hydrosource2.ornl.gov,
+  - open it, clip to the DRB bbox,
+  - compute polygon-grid weights in-memory against the catchment shapefile,
+  - apply them, write final/parquet/{sim}__{var}.parquet,
+  - print summary stats (annual mean prcp at cannonsville).
 """
 
 from __future__ import annotations
@@ -30,44 +27,6 @@ from cmip6_drb import aggregate, config as cfg_mod, http_client, io as drb_io, m
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s: %(message)s")
 log = logging.getLogger("smoke")
-
-
-def _fetch_via_globus(cfg, task: manifest.Task, dest: Path) -> bool:
-    """Try Globus. Return True on success, False to indicate fallback should run."""
-    g = cfg["globus"]
-    if not g.get("enable"):
-        log.info("Globus disabled in config; using HTTPS fallback.")
-        return False
-    if not g.get("destination_endpoint_uuid") or not g.get("client_id"):
-        log.warning("Globus config incomplete (destination UUID / client ID missing); falling back to HTTPS.")
-        return False
-    try:
-        from cmip6_drb.globus_client import GlobusConfig, GlobusTransferClient  # lazy import
-    except Exception as e:  # noqa: BLE001
-        log.warning("globus-sdk import failed (%s); falling back to HTTPS.", e)
-        return False
-
-    gc = GlobusConfig(
-        client_id=g["client_id"],
-        source_endpoint_uuid=g["source_endpoint_uuid"],
-        destination_endpoint_uuid=g["destination_endpoint_uuid"],
-        refresh_token_path=Path(g["refresh_token_path"]).expanduser(),
-    )
-    try:
-        client = GlobusTransferClient(gc)
-    except FileNotFoundError as e:
-        log.warning("Globus refresh token not found (%s); falling back to HTTPS.", e)
-        return False
-
-    src = manifest.globus_source_path(cfg, task)
-    dst = str(dest.resolve())
-    label = f"smoke {task.simulation}/{task.variable}/{task.year}"
-    log.info("Submitting Globus transfer: %s -> %s", src, dst)
-    task_id = client.submit_batch([(src, dst)], label=label)
-    log.info("Task submitted: %s; polling...", task_id)
-    status = client.wait(task_id, poll_seconds=15.0, timeout_seconds=3600.0)
-    log.info("Globus task finished: status=%s", status.get("status"))
-    return status.get("status") == "SUCCEEDED"
 
 
 def _fetch_via_https(cfg, task: manifest.Task, dest: Path) -> Path:
@@ -100,9 +59,8 @@ def main() -> int:
 
     raw_dest = cfg.paths.raw_dest(sim, var, task.filename(), permanent=False)
 
-    if not _fetch_via_globus(cfg, task, raw_dest):
-        log.info("HTTPS fetch from %s", manifest.http_url(cfg, task))
-        _fetch_via_https(cfg, task, raw_dest)
+    log.info("HTTPS fetch from %s", manifest.http_url(cfg, task))
+    _fetch_via_https(cfg, task, raw_dest)
 
     if not raw_dest.exists():
         log.error("Raw file missing after fetch: %s", raw_dest)

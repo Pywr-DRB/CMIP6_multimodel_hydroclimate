@@ -31,25 +31,8 @@ retention:
   staging_raw_cap_gb: 500
   permanent_warn_tb: 5
 
-# Globus configuration.
-# Endpoint UUID and path are taken from the "Open in Globus" link on the
-# dataset DOI page (https://doi.ccs.ornl.gov/dataset/9d3ff396-992d-5bd7-ab02-d21ec6193147).
-# The collection is OLCF DTN read-only, hosting the OLCF DOI archive.
-globus:
-  source_endpoint_uuid: "57618e0a-2c99-45ff-9694-24141b92fa17"
-  source_root: "/gen101/world-shared/doi-data/OLCF/202402/10.13139_OLCF_2311812"
-  # User-provided destination UUID (collection on this cluster's GCSv5 server,
-  # confirmed registered via Transfer API).
-  destination_endpoint_uuid: "3232c6a5-669e-4a02-bba9-fd039218401e"
-  # Absolute path on the destination collection where raw NetCDF should land.
-  # Override if the collection's mapped path doesn't include the project tree.
-  destination_root: "/home/fs02/pmr82_0001/tja73/Research/DRB/Pywr-DRB/CMIP6_multimodel_hydroclimate/data/staging/raw_nc/permanent"
-  refresh_token_path: ~/.globus_drb_refresh_token.json
-  client_id: "7aa6226b-de31-4fb8-b56e-6b224125b189"  # personal Globus Native App client ID
-  concurrency_cap: 4
-  enable: false  # set true once auth is configured; pipeline runs on HTTPS until then
-
-# HTTPS fallback.
+# HTTPS source (hydrosource2.ornl.gov mirror of the OLCF DOI archive).
+# Browse the directory listing at the base_url to confirm available simulations.
 https:
   base_url: "https://hydrosource2.ornl.gov/files/SWA9505V3"
   concurrency: 4
