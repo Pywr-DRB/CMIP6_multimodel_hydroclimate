@@ -18,6 +18,27 @@ Version 1.1.* HydroSource. Oak Ridge National Laboratory.
 
 ---
 
+## Dataset coverage
+
+| Component | Values | Count |
+|---|---|---|
+| GCMs | ACCESS-CM2, BCC-CSM2-MR, CNRM-ESM2-1, EC-Earth3, MPI-ESM1-2-HR, MRI-ESM2-0, NorESM2-MM | 7 |
+| SSP scenarios | ssp126, ssp245, ssp370, ssp585 | 4 |
+| Downscaling × reference observations | DBCCA-Daymet, DBCCA-Livneh, RegCM-Daymet, RegCM-Livneh | 4 |
+| Historical reference runs | DaymetV4 (1980–2022), Livneh (1950–2018) | 2 |
+| Variables per run | `prcp`, `tmax`, `tmin`, `wind`, plus 21 derived (VIC + VIC-MetClim + PRMS) | 25 |
+| Future period | 2015–2099 | 85 yrs |
+
+The full Cartesian (7 × 4 × 4 = 112) is **not** populated. Each GCM ships
+DBCCA-Daymet for all 4 SSPs, and DBCCA-Livneh / RegCM-Daymet / RegCM-Livneh
+for ssp585 only — **7 future runs per GCM × 7 GCMs = 49 future + 2 historical
+≈ 51 simulation runs**, ~110,000 (sim × variable × year) NetCDF files total.
+CNRM-ESM2-1 uses ensemble `r1i1p1f2`; others use `r1i1p1f1`. See
+[Kao et al. 2022](https://doi.org/10.2172/1887712) for methodology and
+provenance.
+
+---
+
 ## Quickstart
 
 The pipeline runs in five phases. The first three are tested and work; phases
