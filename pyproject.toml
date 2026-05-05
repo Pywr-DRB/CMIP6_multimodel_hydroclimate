@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "cmip6_drb"
+version = "0.1.0"
+description = "Download and aggregate Kao et al. 2024 CMIP6 hydroclimate projections to Pywr-DRB catchments."
+requires-python = ">=3.11"
+authors = [{name = "Trevor Amestoy", email = "tja73@cornell.edu"}]
+license = {text = "MIT"}
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"

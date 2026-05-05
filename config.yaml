@@ -1,0 +1,101 @@
+# cmip6_drb run configuration.
+# All paths are absolute or relative to the repo root.
+
+paths:
+  # Directory holding the Pywr-DRB node basin shapefile (sibling repo).
+  shapefile: ../Input-Data-Retrieval/datasets/Spatial/DRB_shapefiles/node_basin_geometries.shp
+  # Where raw NetCDF lands. "permanent" subdir is exempt from stream-and-discard.
+  staging_raw: data/staging/raw_nc
+  # Per-year aggregated parquet, deleted after concat reduce.
+  staging_intermediate: data/staging/intermediate
+  # Final outputs (long-lived).
+  final_parquet: data/final/parquet
+  final_weights: data/final/weights
+  # State / progress tracking (resumable).
+  state_file: data/state.jsonl
+  log_dir: logs
+
+# DRB bounding box for clip-before-aggregate. Generous; refined by shapefile bounds at runtime.
+drb_bbox:
+  lon_min: -76.5
+  lon_max: -74.0
+  lat_min: 38.5
+  lat_max: 42.5
+
+# CRS the shapefile is reprojected to (must match grid coords' CRS).
+target_crs: EPSG:4326
+
+# Aggregation policy. Any variable not in `keep_raw` is deleted after aggregation.
+retention:
+  keep_raw: [prcp, tmax, tmin, wind]
+  staging_raw_cap_gb: 500
+  permanent_warn_tb: 5
+
+# Globus configuration.
+# Endpoint UUID and path are taken from the "Open in Globus" link on the
+# dataset DOI page (https://doi.ccs.ornl.gov/dataset/9d3ff396-992d-5bd7-ab02-d21ec6193147).
+# The collection is OLCF DTN read-only, hosting the OLCF DOI archive.
+globus:
+  source_endpoint_uuid: "57618e0a-2c99-45ff-9694-24141b92fa17"
+  source_root: "/gen101/world-shared/doi-data/OLCF/202402/10.13139_OLCF_2311812"
+  # User-provided destination UUID (collection on this cluster's GCSv5 server,
+  # confirmed registered via Transfer API).
+  destination_endpoint_uuid: "3232c6a5-669e-4a02-bba9-fd039218401e"
+  # Absolute path on the destination collection where raw NetCDF should land.
+  # Override if the collection's mapped path doesn't include the project tree.
+  destination_root: "/home/fs02/pmr82_0001/tja73/Research/DRB/Pywr-DRB/CMIP6_multimodel_hydroclimate/data/staging/raw_nc/permanent"
+  refresh_token_path: ~/.globus_drb_refresh_token.json
+  client_id: "7aa6226b-de31-4fb8-b56e-6b224125b189"  # personal Globus Native App client ID
+  concurrency_cap: 4
+  enable: false  # set true once auth is configured; pipeline runs on HTTPS until then
+
+# HTTPS fallback.
+https:
+  base_url: "https://hydrosource2.ornl.gov/files/SWA9505V3"
+  concurrency: 4
+  retries: 8
+  backoff_seconds: 3.0
+
+# Source dataset enumeration.
+dataset:
+  # Historical reference simulations.
+  historical_simulations: [DaymetV4, Livneh]
+  # Future simulations: enumerated as {gcm}_{ssp}_{ensemble}_{downscaling}_{ref_obs}.
+  gcms: [ACCESS-CM2, BCC-CSM2-MR, CNRM-ESM2-1, EC-Earth3, MPI-ESM1-2-HR, MRI-ESM2-0, NorESM2-MM]
+  ssps: [ssp126, ssp245, ssp370, ssp585]
+  downscalings: [DBCCA, RegCM]
+  ref_obs: [Daymet, Livneh]
+  # Per-GCM CMIP6 ensemble IDs (verified against hydrosource2.ornl.gov listings).
+  ensembles:
+    ACCESS-CM2: [r1i1p1f1]
+    BCC-CSM2-MR: [r1i1p1f1]
+    CNRM-ESM2-1: [r1i1p1f2]   # CNRM uses f2 forcing variant
+    EC-Earth3: [r1i1p1f1]
+    MPI-ESM1-2-HR: [r1i1p1f1]
+    MRI-ESM2-0: [r1i1p1f1]
+    NorESM2-MM: [r1i1p1f1]
+  # Years. Daymet starts in 1980, Livneh in 1950; future runs go through 2099.
+  historical_years:
+    DaymetV4: {start: 1980, end: 2022}
+    Livneh: {start: 1950, end: 2018}
+  future_years: {start: 2015, end: 2099}
+  # Variables to retrieve. Empty list means "all known variables".
+  variables: [prcp, tmax, tmin, wind, srad, lrad, qair, rhum, vp, vpd, pres,
+              runoff, runoffs, runoffb, swe, evap, pet, soilm,
+              PRMS_runoff, PRMS_runoffs, PRMS_runoffb, PRMS_swe, PRMS_evap, PRMS_pet, PRMS_soilm]
+
+# Smoke-test scope (Phase 1). Single sim × var × year.
+smoke_test:
+  simulation: DaymetV4
+  variable: prcp
+  year: 1980
+
+# Aggregation parallelism (multiprocessing.Pool inside one SLURM allocation).
+mpi:
+  task_chunk_size: 5000   # checkpoint every N tasks
+  log_every: 50
+
+mp:
+  workers: 8              # concurrent fetch+aggregate workers per node.
+                          # Dropped from 16 -> 8 at 00:57 ET 2026-05-05 due to
+                          # ORNL hydrosource2 mid-transfer cuts under load.
