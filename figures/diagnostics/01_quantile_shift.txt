@@ -1,0 +1,95 @@
+figure: 01_quantile_shift
+periods: {'H': [1980, 2014], 'F_late': [2070, 2099]}
+simulations (6):
+  - DaymetV4
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet
+sample_sizes:
+  - DaymetV4|prcp|H: 12784
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|DJF: 2707
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|DJF: 2707
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|prcp|F_late|DJF: 2707
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|DJF: 2707
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|DJF: 2707
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|MAM: 2760
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|MAM: 2760
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|prcp|F_late|MAM: 2760
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|MAM: 2760
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|MAM: 2760
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|JJA: 2760
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|JJA: 2760
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|prcp|F_late|JJA: 2760
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|JJA: 2760
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|JJA: 2760
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|SON: 2730
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|SON: 2730
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|prcp|F_late|SON: 2730
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|SON: 2730
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|SON: 2730
+  - DaymetV4|tmax|H: 12784
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|DJF: 2707
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|DJF: 2707
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmax|F_late|DJF: 2707
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|DJF: 2707
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|DJF: 2707
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|MAM: 2760
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|MAM: 2760
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmax|F_late|MAM: 2760
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|MAM: 2760
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|MAM: 2760
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|JJA: 2760
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|JJA: 2760
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmax|F_late|JJA: 2760
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|JJA: 2760
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|JJA: 2760
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|SON: 2730
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|SON: 2730
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmax|F_late|SON: 2730
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|SON: 2730
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|SON: 2730
+  - DaymetV4|tmin|H: 12784
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|DJF: 2707
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|DJF: 2707
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmin|F_late|DJF: 2707
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|DJF: 2707
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|DJF: 2707
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|MAM: 2760
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|MAM: 2760
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmin|F_late|MAM: 2760
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|MAM: 2760
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|MAM: 2760
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|JJA: 2760
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|JJA: 2760
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmin|F_late|JJA: 2760
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|JJA: 2760
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|JJA: 2760
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|SON: 2730
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|SON: 2730
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmin|F_late|SON: 2730
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|SON: 2730
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|F_late|SON: 2730
+  - DaymetV4|wind|H: 12784
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|DJF: 2707
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|DJF: 2707
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|wind|F_late|DJF: 2707
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|DJF: 2707
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|DJF: 2707
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|MAM: 2760
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|MAM: 2760
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|wind|F_late|MAM: 2760
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|MAM: 2760
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|MAM: 2760
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|JJA: 2760
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|JJA: 2760
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|wind|F_late|JJA: 2760
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|JJA: 2760
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|JJA: 2760
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|SON: 2730
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|SON: 2730
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|wind|F_late|SON: 2730
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|SON: 2730
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|wind|F_late|SON: 2730
+notes: Per-quantile F-late vs obs-H comparison at cannonsville. 80 quantile probes from p=0.005 to p=0.995.

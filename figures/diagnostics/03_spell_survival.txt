@@ -1,0 +1,59 @@
+figure: 03_spell_survival
+periods: {'H': [1980, 2014], 'F_late': [2070, 2099]}
+simulations (6):
+  - DaymetV4
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet
+sample_sizes:
+  - DaymetV4|H|DJF|dry: 632
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|DJF|dry: 530
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|DJF|dry: 515
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|F_late|DJF|dry: 525
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|DJF|dry: 511
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|DJF|dry: 512
+  - DaymetV4|H|DJF|wet: 631
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|DJF|wet: 529
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|DJF|wet: 515
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|F_late|DJF|wet: 526
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|DJF|wet: 512
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|DJF|wet: 512
+  - DaymetV4|H|MAM|dry: 562
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|MAM|dry: 540
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|MAM|dry: 571
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|F_late|MAM|dry: 527
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|MAM|dry: 540
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|MAM|dry: 531
+  - DaymetV4|H|MAM|wet: 561
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|MAM|wet: 541
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|MAM|wet: 571
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|F_late|MAM|wet: 526
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|MAM|wet: 540
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|MAM|wet: 530
+  - DaymetV4|H|JJA|dry: 599
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|JJA|dry: 508
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|JJA|dry: 571
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|F_late|JJA|dry: 540
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|JJA|dry: 545
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|JJA|dry: 532
+  - DaymetV4|H|JJA|wet: 600
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|JJA|wet: 508
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|JJA|wet: 571
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|F_late|JJA|wet: 540
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|JJA|wet: 545
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|JJA|wet: 532
+  - DaymetV4|H|SON|dry: 563
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|SON|dry: 493
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|SON|dry: 494
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|F_late|SON|dry: 503
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|SON|dry: 525
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|SON|dry: 503
+  - DaymetV4|H|SON|wet: 563
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|SON|wet: 492
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|SON|wet: 493
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|F_late|SON|wet: 503
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|SON|wet: 525
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|F_late|SON|wet: 504
+notes: Empirical survival curves for consecutive dry/wet day spells by season. Wet day = basin-mean prcp >= threshold. Series = upper-DRB composite.

@@ -1,0 +1,35 @@
+figure: 02_wet_day_decomp
+periods: {'H': [1980, 2014], 'F_late': [2070, 2099]}
+simulations (6):
+  - DaymetV4
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet
+sample_sizes:
+  - DaymetV4|prcp|H|DJF: 3159
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|DJF: 2707
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|DJF: 2707
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|prcp|F_late|DJF: 2707
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|DJF: 2707
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|DJF: 2707
+  - DaymetV4|prcp|H|MAM: 3220
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|MAM: 2760
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|MAM: 2760
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|prcp|F_late|MAM: 2760
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|MAM: 2760
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|MAM: 2760
+  - DaymetV4|prcp|H|JJA: 3220
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|JJA: 2760
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|JJA: 2760
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|prcp|F_late|JJA: 2760
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|JJA: 2760
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|JJA: 2760
+  - DaymetV4|prcp|H|SON: 3185
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|SON: 2730
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|SON: 2730
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|prcp|F_late|SON: 2730
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|SON: 2730
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|SON: 2730
+notes: Wet-day threshold 0.1 mm/day basin-mean at cannonsville.

@@ -1,0 +1,23 @@
+figure: 09_handoff_continuity
+periods: {'window_a': [2010, 2025], 'HO': [2015, 2018]}
+simulations (6):
+  - DaymetV4
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet
+sample_sizes:
+  - DaymetV4|prcp|annual: 13
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|annual: 11
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|annual: 11
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|prcp|annual: 11
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|annual: 11
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|annual: 11
+  - DaymetV4|tmax|annual: 13
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|annual: 11
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|annual: 11
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmax|annual: 11
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|annual: 11
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|annual: 11
+notes: Three-panel BC-handoff QC at basin cannonsville: (a) annual time series, (b) HO-window monthly climatology, (c) HO-window daily-anomaly KDE.

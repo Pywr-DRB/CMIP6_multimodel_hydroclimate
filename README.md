@@ -129,6 +129,57 @@ python scripts/04_aggregate_mpi.py --reduce-only
 
 ---
 
+## Current retrieval status (2026-05-20)
+
+249 parquet files written (~1.17 GB) across observations, ssp245, ssp370,
+and a complete ssp585 sweep. Coverage of the configured `ssp245`/`ssp370`
+targets is **incomplete** — the aggregator job 229370 hit the 24 h SLURM
+time limit on 2026-05-15 while doing on-demand HTTPS fetches under flaky
+ORNL hydrosource2 conditions. See [logs/aggregate_229370.err](logs/aggregate_229370.err).
+
+| Simulation set | Vars done (of 8) | Notes |
+|---|---|---|
+| DaymetV4, Livneh observations | 25 / 25 | complete |
+| ACCESS-CM2 ssp245, ssp370 | 8 / 8 | complete |
+| BCC-CSM2-MR ssp245 | 5 / 8 | needs lrad, qair, rhum |
+| BCC-CSM2-MR ssp370 | 4 / 8 | needs srad, lrad, qair, rhum |
+| CNRM/EC-Earth3/MPI/MRI/NorESM ssp245+ssp370 | 0 / 8 | nothing aggregated yet |
+| all 7 GCMs × ssp585 (out-of-config) | ~25 / 25 | complete; retained as bonus |
+
+Raw NetCDFs for `prcp`, `tmax`, `tmin`, `wind` are already staged for every
+GCM × {ssp245, ssp370} under `data/staging/raw_nc/permanent/` (download
+job 228876 finished 4760/4760 successfully). The remaining work splits into
+two stages with very different cost profiles.
+
+### Finishing the targets — two-stage resubmission
+
+**Stage A (offline, ~2–3 h):** aggregate the four `keep_raw` vars for the 5
+GCMs that are still empty. Pure local CPU, no HTTPS calls.
+
+```bash
+sbatch slurm/aggregate_groupA.sbatch        # 3,400 tasks pending
+```
+
+**Stage B (network, per-GCM, ~12 h each):** on-demand fetch + aggregate
+`srad`/`lrad`/`qair`/`rhum` from ORNL. Split one job per GCM so any ORNL
+outage only loses that GCM's worth of progress.
+
+```bash
+sbatch -J cmip6B_BCC     slurm/aggregate_groupB.sbatch BCC-CSM2-MR    # 607
+sbatch -J cmip6B_CNRM    slurm/aggregate_groupB.sbatch CNRM-ESM2-1    # 680
+sbatch -J cmip6B_ECEarth slurm/aggregate_groupB.sbatch EC-Earth3      # 680
+sbatch -J cmip6B_MPI     slurm/aggregate_groupB.sbatch MPI-ESM1-2-HR  # 680
+sbatch -J cmip6B_MRI     slurm/aggregate_groupB.sbatch MRI-ESM2-0     # 680
+sbatch -J cmip6B_NorESM  slurm/aggregate_groupB.sbatch NorESM2-MM     # 680
+```
+
+Both sbatch files honor [data/state.jsonl](data/state.jsonl) and skip
+already-completed (sim, var, year) tuples, so they are safe to re-run on
+partial failure. Stream-and-discard keeps peak extra staging disk ≲ 5 GB
+during Stage B.
+
+---
+
 ## Output schema
 
 | File | Index | Columns | Units |
@@ -190,7 +241,9 @@ scripts/
 slurm/
   smoke.sbatch
   download.sbatch
-  aggregate.sbatch
+  aggregate.sbatch           # full sweep (24 h)
+  aggregate_groupA.sbatch    # finish keep_raw vars for missing GCMs (offline, 6 h)
+  aggregate_groupB.sbatch    # per-GCM finish of srad/lrad/qair/rhum (network, 12 h)
 tests/                # pytest suite (synthetic correctness)
 config.yaml           # single source of truth
 ```

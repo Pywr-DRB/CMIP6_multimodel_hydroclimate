@@ -218,3 +218,4 @@ logs/
 # Claude Code harness state (session-local, not project code)
 .claude/
 SESSION_NOTES.md
+./figures/

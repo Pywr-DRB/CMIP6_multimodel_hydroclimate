@@ -111,7 +111,9 @@ def main() -> int:
 
     chunk = int(cfg["mpi"]["task_chunk_size"])
     log_every = int(cfg["mpi"]["log_every"])
+    reduce_every = int(cfg.get("mp", {}).get("reduce_every", 500))
     failures = 0
+    since_reduce = 0
     # 'spawn' avoids fork+fork issues with file descriptors held by xarray/h5netcdf.
     ctx = mp.get_context("spawn")
     with ctx.Pool(n_workers) as pool:
@@ -129,12 +131,19 @@ def main() -> int:
                              info=f"{result['status']}: {result['info']}")
                 if stage == "failed":
                     failures += 1
+                since_reduce += 1
                 if i % log_every == 0:
                     log.info("  progress: %d/%d in batch (%d failures so far)",
                              i, len(batch), failures)
+                # Periodic reduce so partial progress shows up in final/parquet/
+                # without waiting for the entire job to finish.
+                if since_reduce >= reduce_every and not args.no_reduce:
+                    log.info("  triggering periodic reduce (%d new results since last)", since_reduce)
+                    _reduce(cfg)
+                    since_reduce = 0
 
     if not args.no_reduce:
-        log.info("Worker phase done; running reduce step...")
+        log.info("Worker phase done; running final reduce step...")
         _reduce(cfg)
 
     log.info("Aggregation finished: %d total failures.", failures)

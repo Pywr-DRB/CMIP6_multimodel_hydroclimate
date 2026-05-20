@@ -1,0 +1,40 @@
+figure: 10_wasserstein_clustermap
+periods: {'obs_H': [1980, 2014], 'obs_b_H': [1980, 2018], 'F_late': [2070, 2099]}
+simulations (7):
+  - DaymetV4
+  - Livneh
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet
+sample_sizes:
+  - prcp|DaymetV4/H|n_days: 12784
+  - prcp|Livneh/H|n_days: 14245
+  - prcp|ACCESS-CM2/F-late|n_days: 10957
+  - prcp|BCC-CSM2-MR/F-late|n_days: 10957
+  - prcp|CNRM-ESM2-1/F-late|n_days: 10957
+  - prcp|EC-Earth3/F-late|n_days: 10957
+  - prcp|MPI-ESM1-2-HR/F-late|n_days: 10957
+  - tmax|DaymetV4/H|n_days: 12784
+  - tmax|Livneh/H|n_days: 14245
+  - tmax|ACCESS-CM2/F-late|n_days: 10957
+  - tmax|BCC-CSM2-MR/F-late|n_days: 10957
+  - tmax|CNRM-ESM2-1/F-late|n_days: 10957
+  - tmax|EC-Earth3/F-late|n_days: 10957
+  - tmax|MPI-ESM1-2-HR/F-late|n_days: 10957
+  - tmin|DaymetV4/H|n_days: 12784
+  - tmin|Livneh/H|n_days: 14245
+  - tmin|ACCESS-CM2/F-late|n_days: 10957
+  - tmin|BCC-CSM2-MR/F-late|n_days: 10957
+  - tmin|CNRM-ESM2-1/F-late|n_days: 10957
+  - tmin|EC-Earth3/F-late|n_days: 10957
+  - tmin|MPI-ESM1-2-HR/F-late|n_days: 10957
+  - wind|DaymetV4/H|n_days: 12784
+  - wind|Livneh/H|n_days: 14245
+  - wind|ACCESS-CM2/F-late|n_days: 10957
+  - wind|BCC-CSM2-MR/F-late|n_days: 10957
+  - wind|CNRM-ESM2-1/F-late|n_days: 10957
+  - wind|EC-Earth3/F-late|n_days: 10957
+  - wind|MPI-ESM1-2-HR/F-late|n_days: 10957
+notes: Pairwise 1-Wasserstein on standardized daily anomalies. Ward-linkage clustermap reorder.

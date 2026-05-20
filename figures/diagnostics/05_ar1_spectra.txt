@@ -1,0 +1,35 @@
+figure: 05_ar1_spectra
+periods: {'obs_H': [1980, 2014], 'gcm_F_late': [2070, 2099]}
+simulations (6):
+  - DaymetV4
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet
+sample_sizes:
+  - DaymetV4|prcp|spectra|n_days: 12784
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|spectra|n_days: 10957
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|spectra|n_days: 10957
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|prcp|spectra|n_days: 10957
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|spectra|n_days: 10957
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|spectra|n_days: 10957
+  - DaymetV4|tmax|spectra|n_days: 12784
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|spectra|n_days: 10957
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|spectra|n_days: 10957
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmax|spectra|n_days: 10957
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|spectra|n_days: 10957
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|spectra|n_days: 10957
+  - DaymetV4|tmin|spectra|n_days: 12784
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|spectra|n_days: 10957
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|spectra|n_days: 10957
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmin|spectra|n_days: 10957
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|spectra|n_days: 10957
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmin|spectra|n_days: 10957
+  - DaymetV4|wind|spectra|n_days: 12784
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|wind|spectra|n_days: 10957
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|wind|spectra|n_days: 10957
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|wind|spectra|n_days: 10957
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|wind|spectra|n_days: 10957
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|wind|spectra|n_days: 10957
+notes: AR(1) bars (top) over four seasons. Welch PSD (bottom) on detrended DOY-anomaly series, nperseg=1024. Anomaly = remove 31-d-smoothed DOY climatology, then linear detrend.

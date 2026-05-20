@@ -1,0 +1,71 @@
+figure: 04_annual_maxima_ranked
+periods: {'H': [1980, 2014], 'F_late': [2070, 2099]}
+simulations (6):
+  - DaymetV4
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet
+sample_sizes:
+  - DaymetV4|prcp|H|cannonsville: 35
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|cannonsville: 30
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|cannonsville: 30
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|prcp|F_late|cannonsville: 30
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|cannonsville: 30
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|cannonsville: 30
+  - DaymetV4|prcp|H|pepacton: 35
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|pepacton: 30
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|pepacton: 30
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|prcp|F_late|pepacton: 30
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|pepacton: 30
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|pepacton: 30
+  - DaymetV4|prcp|H|neversink: 35
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|neversink: 30
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|neversink: 30
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|prcp|F_late|neversink: 30
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|neversink: 30
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|neversink: 30
+  - DaymetV4|prcp|H|delMontague: 35
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|delMontague: 30
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|delMontague: 30
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|prcp|F_late|delMontague: 30
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|delMontague: 30
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|delMontague: 30
+  - DaymetV4|prcp|H|delTrenton: 35
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|delTrenton: 30
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|delTrenton: 30
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|prcp|F_late|delTrenton: 30
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|delTrenton: 30
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|prcp|F_late|delTrenton: 30
+  - DaymetV4|tmax|H|cannonsville: 35
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|cannonsville: 30
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|cannonsville: 30
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmax|F_late|cannonsville: 30
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|cannonsville: 30
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|cannonsville: 30
+  - DaymetV4|tmax|H|pepacton: 35
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|pepacton: 30
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|pepacton: 30
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmax|F_late|pepacton: 30
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|pepacton: 30
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|pepacton: 30
+  - DaymetV4|tmax|H|neversink: 35
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|neversink: 30
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|neversink: 30
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmax|F_late|neversink: 30
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|neversink: 30
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|neversink: 30
+  - DaymetV4|tmax|H|delMontague: 35
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|delMontague: 30
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|delMontague: 30
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmax|F_late|delMontague: 30
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|delMontague: 30
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|delMontague: 30
+  - DaymetV4|tmax|H|delTrenton: 35
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|delTrenton: 30
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|delTrenton: 30
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|tmax|F_late|delTrenton: 30
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|delTrenton: 30
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|tmax|F_late|delTrenton: 30
+notes: Empirical ranked AM. No fitted distribution — just sorted data with Weibull plotting position. Replaces an earlier GEV-MLE+bootstrap draft that was too slow for interactive use.

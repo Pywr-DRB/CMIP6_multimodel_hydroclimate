@@ -1,0 +1,23 @@
+figure: 07_compound_hot_dry
+periods: {'H': [1980, 2014], 'F_late': [2070, 2099], 'F_full': [2015, 2099]}
+simulations (6):
+  - DaymetV4
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet
+sample_sizes:
+  - DaymetV4|H|hexbin_n: 12784
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|F-late|hexbin_n: 10957
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|F-late|hexbin_n: 10957
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|F-late|hexbin_n: 10957
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|F-late|hexbin_n: 10957
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|F-late|hexbin_n: 10957
+  - DaymetV4|hot_dry|years: 35
+  - ACCESS-CM2_ssp585_r1i1p1f1_DBCCA_Daymet|hot_dry|years: 85
+  - BCC-CSM2-MR_ssp585_r1i1p1f1_DBCCA_Daymet|hot_dry|years: 85
+  - CNRM-ESM2-1_ssp585_r1i1p1f2_DBCCA_Daymet|hot_dry|years: 85
+  - EC-Earth3_ssp585_r1i1p1f1_DBCCA_Daymet|hot_dry|years: 85
+  - MPI-ESM1-2-HR_ssp585_r1i1p1f1_DBCCA_Daymet|hot_dry|years: 84
+notes: Hexbin (Tmax-anom, prcp). Compound hot-dry day = Tmax > DOY-P90 AND prcp < DOY-P10 with ±15 d window. Thresholds from obs-H.

@@ -1,0 +1,15 @@
+figure: 08_cross_obs_qq
+periods: {'H_obs_full': [1980, 2018]}
+simulations (2):
+  - DaymetV4
+  - Livneh
+sample_sizes:
+  - DaymetV4|prcp: 14245
+  - Livneh|prcp: 14245
+  - DaymetV4|tmax: 14245
+  - Livneh|tmax: 14245
+  - DaymetV4|tmin: 14245
+  - Livneh|tmin: 14245
+  - DaymetV4|wind: 14245
+  - Livneh|wind: 14245
+notes: Per-basin Q-Q for each (var, season) over the Daymet∩Livneh overlap. Heavy black is the 33-basin-mean Q-Q. prcp axes use symlog (linthresh=1).

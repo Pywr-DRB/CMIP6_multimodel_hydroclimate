@@ -28,7 +28,7 @@ target_crs: EPSG:4326
 # Aggregation policy. Any variable not in `keep_raw` is deleted after aggregation.
 retention:
   keep_raw: [prcp, tmax, tmin, wind]
-  staging_raw_cap_gb: 500
+  staging_raw_cap_gb: 3000
   permanent_warn_tb: 5
 
 # HTTPS source (hydrosource2.ornl.gov mirror of the OLCF DOI archive).
@@ -42,12 +42,12 @@ https:
 # Source dataset enumeration.
 dataset:
   # Historical reference simulations.
-  historical_simulations: [DaymetV4, Livneh]
+  historical_simulations: []
   # Future simulations: enumerated as {gcm}_{ssp}_{ensemble}_{downscaling}_{ref_obs}.
   gcms: [ACCESS-CM2, BCC-CSM2-MR, CNRM-ESM2-1, EC-Earth3, MPI-ESM1-2-HR, MRI-ESM2-0, NorESM2-MM]
-  ssps: [ssp126, ssp245, ssp370, ssp585]
-  downscalings: [DBCCA, RegCM]
-  ref_obs: [Daymet, Livneh]
+  ssps: [ssp245, ssp370]
+  downscalings: [DBCCA]
+  ref_obs: [Daymet]
   # Per-GCM CMIP6 ensemble IDs (verified against hydrosource2.ornl.gov listings).
   ensembles:
     ACCESS-CM2: [r1i1p1f1]
@@ -63,9 +63,7 @@ dataset:
     Livneh: {start: 1950, end: 2018}
   future_years: {start: 2015, end: 2099}
   # Variables to retrieve. Empty list means "all known variables".
-  variables: [prcp, tmax, tmin, wind, srad, lrad, qair, rhum, vp, vpd, pres,
-              runoff, runoffs, runoffb, swe, evap, pet, soilm,
-              PRMS_runoff, PRMS_runoffs, PRMS_runoffb, PRMS_swe, PRMS_evap, PRMS_pet, PRMS_soilm]
+  variables: [prcp, tmax, tmin, wind, srad, lrad, qair, rhum]
 
 # Smoke-test scope (Phase 1). Single sim × var × year.
 smoke_test:
@@ -82,3 +80,23 @@ mp:
   workers: 8              # concurrent fetch+aggregate workers per node.
                           # Dropped from 16 -> 8 at 00:57 ET 2026-05-05 due to
                           # ORNL hydrosource2 mid-transfer cuts under load.
+  reduce_every: 500       # run reduce step every N completed tasks so partial
+                          # progress shows up in data/final/parquet/ during long jobs
+
+# Diagnostics figure generation (scripts/06_make_diagnostics.py).
+diagnostics:
+  reference_obs: DaymetV4              # primary obs reference (BC target)
+  obs_secondary: Livneh                # for cross-obs uncertainty figure
+  variables: [prcp, tmax, tmin, wind]  # extend later: srad, vpd, qair, ...
+  nodes_focus: [cannonsville, pepacton, neversink, delMontague, delTrenton]
+  periods:
+    H:           {start: 1980, end: 2014}   # historical baseline
+    H_obs_full:  {start: 1980, end: 2018}   # Daymet ∩ Livneh, cross-obs window
+    HO:          {start: 2015, end: 2018}   # Daymet/Livneh ∩ GCM-future overlap
+    F_early:     {start: 2020, end: 2049}
+    F_late:      {start: 2070, end: 2099}
+  wet_day_threshold_mm: 0.1              # daily basin-mean prcp threshold
+  am_bootstrap_n: 200                    # GEV bootstrap resample count
+  welch_nperseg: 1024                    # Welch PSD segment length (days)
+  trend_alpha: 0.05                      # Mann-Kendall significance (BH-FDR)
+  snow_tmean_threshold_C: 0.0            # tmean ≤ this counts as "snow day"
