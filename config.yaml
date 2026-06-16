@@ -27,7 +27,7 @@ target_crs: EPSG:4326
 
 # Aggregation policy. Any variable not in `keep_raw` is deleted after aggregation.
 retention:
-  keep_raw: [prcp, tmax, tmin, wind]
+  keep_raw: [prcp, tmax, tmin, wind, srad, lrad, qair, rhum]
   staging_raw_cap_gb: 3000
   permanent_warn_tb: 5
 

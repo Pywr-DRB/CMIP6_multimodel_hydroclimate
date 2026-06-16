@@ -207,7 +207,9 @@ marimo/_lsp/
 __marimo__/
 
 # cmip6_drb data outputs and HPC artifacts
-data/
+data/staging/
+data/final/parquet/
+data/final/weights/
 logs/
 *.nc
 *.parquet
