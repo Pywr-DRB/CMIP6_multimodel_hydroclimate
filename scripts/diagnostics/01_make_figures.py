@@ -4,7 +4,7 @@ Defensive: each figure attempts to render with whatever (sim, var) parquets
 are present and skips with a warning if its required inputs are missing. Safe
 to run at any pipeline stage — useful both for early peeks and final docs.
 
-    python scripts/05_make_figures.py [--config config.yaml] [--out figures/]
+    python scripts/diagnostics/01_make_figures.py [--config config.yaml] [--out figures/]
 
 All figures are saved as PNG (300 dpi) under `figures/`. Re-running overwrites.
 """
@@ -24,7 +24,7 @@ import numpy as np
 import pandas as pd
 
 THIS = Path(__file__).resolve()
-sys.path.insert(0, str(THIS.parents[1] / "src"))
+sys.path.insert(0, str(THIS.parents[2] / "src"))
 
 from cmip6_drb import config as cfg_mod, io as drb_io  # noqa: E402
 

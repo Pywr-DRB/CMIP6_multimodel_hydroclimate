@@ -8,11 +8,11 @@ on the daily date index, and writes one wide CSV per simulation:
 
     columns: date, prcp, tmax, tmin, wind, srad, lrad, qair, rhum
 
-Defensive, like 05_make_figures.py: a simulation missing some forcing
-variables still gets a CSV (those columns are written as empty/NaN with a
-warning); a simulation missing the node column entirely is skipped.
+Defensive, like scripts/diagnostics/01_make_figures.py: a simulation missing
+some forcing variables still gets a CSV (those columns are written as empty/NaN
+with a warning); a simulation missing the node column entirely is skipped.
 
-    python scripts/07_export_node_csv.py [--config config.yaml]
+    python scripts/05_export_node_csv.py [--config config.yaml]
                                          [--node cannonsville]
                                          [--out data/final/csv]
                                          [--variables prcp tmax tmin ...]
@@ -31,7 +31,7 @@ import pandas as pd
 THIS = Path(__file__).resolve()
 sys.path.insert(0, str(THIS.parents[1] / "src"))
 
-from cmip6_drb import config as cfg_mod, io as drb_io  # noqa: E402
+from cmip6_drb import config as cfg_mod, io as drb_io, streamflow as sf_mod  # noqa: E402
 
 logging.basicConfig(level=logging.INFO, format="%(asctime)s %(name)s %(levelname)s: %(message)s")
 log = logging.getLogger("export_node_csv")
@@ -101,6 +101,12 @@ def export_node(
             for var in missing_var:                # keep full column set + order
                 wide[var] = pd.NA
         wide = wide[variables]
+        # Emit unit-suffixed column names (e.g. prcp -> prcp_mm_day) so the CSV
+        # schema is self-documenting and consistent with the streamflow join (08).
+        wide = wide.rename(columns=sf_mod.FORCING_UNIT_NAMES)
+        # Normalize to a date key (drop the noon stamp) so daily series from other
+        # sources (streamflow at midnight) align on the same row when joined in 08.
+        wide.index = wide.index.normalize()
 
         dest = out_dir / f"{node}__{sim}.csv"
         wide.to_csv(dest, index=True)

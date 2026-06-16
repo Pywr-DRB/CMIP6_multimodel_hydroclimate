@@ -232,12 +232,17 @@ src/cmip6_drb/        # importable Python package
   io.py               # atomic parquet writer with float32 enforcement
   mpi_runner.py       # per-task worker function
   state.py            # JSONL idempotent task tracker
-scripts/
+scripts/                    # data-processing workflow (run in order)
   01_compute_weights.py     # persist polygon-grid weights
   02_smoke_test.py          # Phase 1 end-to-end test
   03_download_bulk.py       # Phase 3 batched fetch (keep_raw vars)
   04_aggregate_mpi.py       # Phase 4 parallel driver + reduce
-  05_make_figures.py        # reproducible figures from final/parquet
+  05_export_node_csv.py     # per-node forcing CSVs from final/parquet
+  06_join_streamflow.py     # + runoff + routed streamflow columns (streamflow repo)
+  diagnostics/              # figures & checks (not part of the data pipeline)
+    01_make_figures.py        # reproducible figures from final/parquet
+    02_make_diagnostics.py    # high-quality diagnostic figures
+    03_validate_streamflow_join.py  # annual water-balance check of the join
 slurm/
   smoke.sbatch
   download.sbatch

@@ -65,6 +65,24 @@ dataset:
   # Variables to retrieve. Empty list means "all known variables".
   variables: [prcp, tmax, tmin, wind, srad, lrad, qair, rhum]
 
+# Routed streamflow join (scripts/06_join_streamflow.py).
+# Pulls per-node routed streamflow (mgd) from the sibling streamflow repo and
+# joins it onto the per-node forcing CSVs. Modular: the resolver maps a
+# hydroclimate simulation name -> matching streamflow dataset directory by name,
+# so newly-retrieved scenarios join automatically with no code change.
+streamflow:
+  # Directory holding the per-dataset gage_flow_mgd.csv files (sibling repo).
+  repo_inputs: ../CMIP6_multimodel_streamflow/pywrdrb/inputs
+  flow_file: gage_flow_mgd.csv
+  # Land-surface models whose RAPID-routed flow to add as columns (one col each).
+  lsms: [VIC5, PRMS]
+  # Historical-label aliases: hydroclimate sim name -> streamflow stem + period.
+  hist_aliases:
+    DaymetV4: {stem: Daymet2019, period: "1980_2019"}
+    Livneh:   {stem: Livneh2018, period: "1950_2013"}
+  # Projection datasets are split by period; concatenate these that exist.
+  proj_periods: ["2020_2059", "2060_2099"]
+
 # Smoke-test scope (Phase 1). Single sim × var × year.
 smoke_test:
   simulation: DaymetV4
@@ -83,7 +101,7 @@ mp:
   reduce_every: 500       # run reduce step every N completed tasks so partial
                           # progress shows up in data/final/parquet/ during long jobs
 
-# Diagnostics figure generation (scripts/06_make_diagnostics.py).
+# Diagnostics figure generation (scripts/diagnostics/02_make_diagnostics.py).
 diagnostics:
   reference_obs: DaymetV4              # primary obs reference (BC target)
   obs_secondary: Livneh                # for cross-obs uncertainty figure

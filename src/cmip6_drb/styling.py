@@ -1,7 +1,8 @@
 """Plot styling: GCM color palette, period labels, and the explicit-label helper.
 
-Single source of truth for colors and decorations across `scripts/05_make_figures.py`
-and `scripts/06_make_diagnostics.py`. Designed so figures are readable as standalone
+Single source of truth for colors and decorations across
+`scripts/diagnostics/01_make_figures.py` and
+`scripts/diagnostics/02_make_diagnostics.py`. Designed so figures are readable as standalone
 slides without captions.
 """
 
@@ -161,7 +162,7 @@ def apply_labels(
     fig_number: str,
     question: str,
     sub_caption: str = "",
-    script: str = "scripts/06_make_diagnostics.py",
+    script: str = "scripts/diagnostics/02_make_diagnostics.py",
     wrap_chars: int = 130,
 ) -> None:
     """Apply the explicit-labeling standard for diagnostic figures.

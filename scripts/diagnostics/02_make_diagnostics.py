@@ -6,7 +6,7 @@ properties or temporal dynamics of basin-aggregated daily climate variables
 `cmip6_drb.styling.apply_labels` for the explicit-labeling standard.
 
 Run:
-    python scripts/06_make_diagnostics.py [--config config.yaml] [--out figures/diagnostics/]
+    python scripts/diagnostics/02_make_diagnostics.py [--config config.yaml] [--out figures/diagnostics/]
                                           [--only 01,02,07]
 
 Each `fig_NN_xxx()` function:
@@ -28,7 +28,7 @@ import numpy as np
 import pandas as pd
 
 THIS = Path(__file__).resolve()
-sys.path.insert(0, str(THIS.parents[1] / "src"))
+sys.path.insert(0, str(THIS.parents[2] / "src"))
 
 from cmip6_drb import config as cfg_mod, io as drb_io  # noqa: E402
 from cmip6_drb import diagnostics as D  # noqa: E402
@@ -652,7 +652,7 @@ def fig_06_snow_and_trend(parquets, cfg, out_dir: Path) -> None:
     shp = Path(cfg["paths"]["shapefile"])
     if not shp.is_absolute():
         shp = (Path(cfg.paths.repo_root) if hasattr(cfg, "paths") and hasattr(cfg.paths, "repo_root")
-               else Path(__file__).resolve().parents[1]) / shp
+               else Path(__file__).resolve().parents[2]) / shp
     if not shp.exists():
         log.warning("fig_06: shapefile not found at %s, skipping", shp)
         return

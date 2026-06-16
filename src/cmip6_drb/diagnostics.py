@@ -2,7 +2,7 @@
 
 Each helper takes plain pandas/numpy in and returns plain pandas/numpy out
 so they are trivially testable. Figure code lives in
-`scripts/06_make_diagnostics.py`; nothing here imports matplotlib.
+`scripts/diagnostics/02_make_diagnostics.py`; nothing here imports matplotlib.
 """
 
 from __future__ import annotations
